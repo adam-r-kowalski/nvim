@@ -1,6 +1,8 @@
 local cmd = vim.cmd
 
-vim.g.tokyonight_style = "night"
+vim.g.material_style = "deep ocean"
 
-cmd('syntax on')
-cmd('colorscheme tokyonight')
+cmd([[
+syntax on
+colorscheme material
+]])

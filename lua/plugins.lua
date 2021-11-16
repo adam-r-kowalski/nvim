@@ -22,7 +22,10 @@ return packer.startup(function()
   use "lukas-reineke/indent-blankline.nvim"
   use 'onsails/lspkind-nvim'
   use 'akinsho/nvim-bufferline.lua'
-  use {'glepnir/galaxyline.nvim', branch='main'}
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  }
   use 'simrat39/symbols-outline.nvim'
   use 'rhysd/vim.wasm'
   use {
@@ -45,6 +48,6 @@ return packer.startup(function()
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/nvim-cmp'
-  use 'folke/tokyonight.nvim'
   use 'rhysd/vim-wasm'
+  use 'marko-cerovac/material.nvim'
 end)
