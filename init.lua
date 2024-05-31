@@ -20,6 +20,7 @@ require("lazy").setup("plugins")
 
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.signcolumn = 'number'
 
 vim.opt.mouse = 'a'
 
