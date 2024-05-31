@@ -13,8 +13,8 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 require("lazy").setup("plugins")
 
@@ -44,3 +44,4 @@ vim.keymap.set("n", "<c-j>", "<c-w>j", { noremap = true, silent = true })
 vim.keymap.set("n", "<c-k>", "<c-w>k", { noremap = true, silent = true })
 vim.keymap.set("n", "<c-l>", "<c-w>l", { noremap = true, silent = true })
 vim.keymap.set("i", "jk", "<esc>", { noremap = true, silent = true })
+

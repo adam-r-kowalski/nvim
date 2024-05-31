@@ -6,9 +6,9 @@ return {
     { 'natecraddock/telescope-zf-native.nvim' }
   },
   keys = {
-    { "<leader>f", "<cmd>Telescope find_files<cr>" },
-    { "<leader>g", "<cmd>Telescope live_grep<cr>" },
-    { "<leader>b", "<cmd>Telescope buffers<cr>" },
+    { "<leader>f", "<cmd>Telescope find_files<cr>", desc="files" },
+    { "<leader>g", "<cmd>Telescope live_grep<cr>", desc="grep" },
+    { "<leader>b", "<cmd>Telescope buffers<cr>", desc="buffer" },
   },
   config = function()
     require("telescope").setup({
