@@ -45,4 +45,3 @@ vim.keymap.set("n", "<c-j>", "<c-w>j", { noremap = true, silent = true })
 vim.keymap.set("n", "<c-k>", "<c-w>k", { noremap = true, silent = true })
 vim.keymap.set("n", "<c-l>", "<c-w>l", { noremap = true, silent = true })
 vim.keymap.set("i", "jk", "<esc>", { noremap = true, silent = true })
-

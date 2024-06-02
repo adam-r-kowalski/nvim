@@ -36,15 +36,15 @@ return {
         ["<c-f>"] = cmp.mapping.scroll_docs(4),
         ["<c-space>"] = cmp.mapping.complete(),
         ["<c-a>"] = cmp.mapping.abort(),
-        ["<cr>"] = cmp.mapping.confirm({ select = true })
+        ["<cr>"] = cmp.mapping.confirm({ select = true }),
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
+        { name = 'path' },
         { name = "vsnip" },
-        { name = 'path' }
       }, {
         { name = "buffer" }
-      })
+      }),
     })
     cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmp.mapping.preset.cmdline(),
@@ -52,6 +52,7 @@ return {
         { name = 'buffer' }
       }
     })
+
     cmp.setup.cmdline(':', {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({

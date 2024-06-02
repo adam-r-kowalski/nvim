@@ -7,17 +7,20 @@ return {
     })
 
     local on_attach = function(_, bufnr)
-      local opts = { buffer = bufnr, noremap = true, silent = true }
-      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-      vim.keymap.set('n', '<c-k>', vim.lsp.buf.signature_help, opts)
-      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-      vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
+      require("which-key").register({
+        D = { vim.lsp.buf.declaration, "declaration" },
+        d = { vim.lsp.buf.definition, "definition" },
+        i = { vim.lsp.buf.implementation, "implementation" },
+        r = { vim.lsp.buf.references, "references" },
+      }, { prefix = "g", buffer = bufnr  })
+      require("which-key").register({
+        K = { vim.lsp.buf.hover, "hover" },
+        ["<c-k>"] = { vim.lsp.buf.signature_help, "signature help" },
+        ["[d"] = { vim.diagnostic.goto_prev, "previous diagnostic" },
+        ["]d"] = { vim.diagnostic.goto_next, "next diagnostic" },
+        ["<leader>rn"] = { vim.lsp.buf.rename, "rename" },
+        ["<leader>q"] = { vim.diagnostic.setloclist, "quickfix" },
+      }, { buffer = bufnr })
     end
 
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
