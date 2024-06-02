@@ -1,5 +1,8 @@
 return {
   "williamboman/mason-lspconfig.nvim",
+  dependencies = {
+    { "folke/trouble.nvim", opts = {} },
+  },
   config = function()
     require("neodev").setup({})
     require("mason-lspconfig").setup({
@@ -11,7 +14,7 @@ return {
         D = { vim.lsp.buf.declaration, "declaration" },
         d = { vim.lsp.buf.definition, "definition" },
         i = { vim.lsp.buf.implementation, "implementation" },
-        r = { vim.lsp.buf.references, "references" },
+        r = { "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", "references" },
       }, { prefix = "g", buffer = bufnr  })
       require("which-key").register({
         K = { vim.lsp.buf.hover, "hover" },
@@ -19,7 +22,7 @@ return {
         ["[d"] = { vim.diagnostic.goto_prev, "previous diagnostic" },
         ["]d"] = { vim.diagnostic.goto_next, "next diagnostic" },
         ["<leader>rn"] = { vim.lsp.buf.rename, "rename" },
-        ["<leader>q"] = { vim.diagnostic.setloclist, "quickfix" },
+        ["<leader>q"] = { "<cmd>Trouble diagnostics toggle<cr>", "quickfix" },
       }, { buffer = bufnr })
     end
 
