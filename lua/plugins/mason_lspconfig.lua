@@ -15,10 +15,10 @@ return {
         d = { vim.lsp.buf.definition, "definition" },
         i = { vim.lsp.buf.implementation, "implementation" },
         r = { "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", "references" },
+        h = { vim.lsp.buf.hover, "hover" },
       }, { prefix = "g", buffer = bufnr  })
+
       require("which-key").register({
-        K = { vim.lsp.buf.hover, "hover" },
-        ["<c-k>"] = { vim.lsp.buf.signature_help, "signature help" },
         ["[d"] = { vim.diagnostic.goto_prev, "previous diagnostic" },
         ["]d"] = { vim.diagnostic.goto_next, "next diagnostic" },
         ["<leader>rn"] = { vim.lsp.buf.rename, "rename" },
