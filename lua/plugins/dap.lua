@@ -1,7 +1,6 @@
 return {
   "mfussenegger/nvim-dap",
   dependencies = {
-    "mfussenegger/nvim-dap-python",
     "rcarriga/nvim-dap-ui",
     "nvim-neotest/nvim-nio",
     "jay-babu/mason-nvim-dap.nvim"
@@ -30,7 +29,22 @@ return {
       'Scripts',
       'python.exe'
     }, '/'):gsub('//+', '/')
-    require('dap-python').setup(python_path)
+
+    dap.adapters.python = {
+      type = 'executable',
+      command = python_path,
+      args = { '-m', 'debugpy.adapter' },
+    }
+
+    dap.configurations.python = {
+      {
+        type = 'python',
+        request = 'launch',
+        name = 'Launch file',
+        program = '${file}',
+        pythonPath = vim.fn.getcwd() .. '/.venv/Scripts/python.exe',
+      },
+    }
 
     vim.fn.sign_define('DapBreakpoint', {text='•', texthl='', linehl='', numhl=''})
   end
