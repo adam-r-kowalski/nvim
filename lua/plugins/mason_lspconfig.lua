@@ -6,7 +6,7 @@ return {
   config = function()
     require("neodev").setup({})
     require("mason-lspconfig").setup({
-      ensure_installed = { "lua_ls", "rust_analyzer", "pyright" }
+      ensure_installed = { "lua_ls", "rust_analyzer", "pyright", "tsserver", "html" }
     })
 
     local on_attach = function(_, bufnr)

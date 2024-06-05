@@ -38,6 +38,8 @@ vim.opt.incsearch = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.autowrite = true
+vim.opt.shada = {}
+vim.opt.shell='nu'
 
 vim.keymap.set("n", ";", ":", { noremap = true })
 vim.keymap.set("n", "<c-h>", "<c-w>h", { noremap = true, silent = true })
@@ -45,3 +47,5 @@ vim.keymap.set("n", "<c-j>", "<c-w>j", { noremap = true, silent = true })
 vim.keymap.set("n", "<c-k>", "<c-w>k", { noremap = true, silent = true })
 vim.keymap.set("n", "<c-l>", "<c-w>l", { noremap = true, silent = true })
 vim.keymap.set("i", "jk", "<esc>", { noremap = true, silent = true })
+vim.keymap.set("t", "<esc>", "<c-\\><c-n>", { noremap = true, silent = true })
+vim.keymap.set("t", "jk", "<c-\\><c-n>", { noremap = true, silent = true })

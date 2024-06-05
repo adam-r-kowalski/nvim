@@ -30,7 +30,7 @@ return {
         'venv',
         'Scripts',
         'python.exe'
-      }, '\\')
+      }, '/')
     else
       python_path = table.concat({
         vim.fn.stdpath('data'),
@@ -57,7 +57,7 @@ return {
         program = '${file}',
         pythonPath = function()
           if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
-            return vim.fn.getcwd() .. '\\.venv\\Scripts\\python.exe'
+            return vim.fn.getcwd() .. '/.venv/Scripts/python.exe'
           else
             return vim.fn.getcwd() .. '/.venv/bin/python'
           end
