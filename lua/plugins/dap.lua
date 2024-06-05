@@ -20,15 +20,28 @@ return {
       ensure_installed = { "python" }
     }
 
-    local python_path = table.concat({
-      vim.fn.stdpath('data'),
-      'mason',
-      'packages',
-      'debugpy',
-      'venv',
-      'Scripts',
-      'python.exe'
-    }, '/'):gsub('//+', '/')
+    local python_path
+    if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
+      python_path = table.concat({
+        vim.fn.stdpath('data'),
+        'mason',
+        'packages',
+        'debugpy',
+        'venv',
+        'Scripts',
+        'python.exe'
+      }, '\\')
+    else
+      python_path = table.concat({
+        vim.fn.stdpath('data'),
+        'mason',
+        'packages',
+        'debugpy',
+        'venv',
+        'bin',
+        'python'
+      }, '/')
+    end
 
     dap.adapters.python = {
       type = 'executable',
@@ -42,7 +55,13 @@ return {
         request = 'launch',
         name = 'Launch file',
         program = '${file}',
-        pythonPath = vim.fn.getcwd() .. '/.venv/Scripts/python.exe',
+        pythonPath = function()
+          if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
+            return vim.fn.getcwd() .. '\\.venv\\Scripts\\python.exe'
+          else
+            return vim.fn.getcwd() .. '/.venv/bin/python'
+          end
+        end,
       },
     }
 
