@@ -45,7 +45,8 @@ return {
       ["<f3>"] = { require'dap'.step_over, "step over" },
       ["<f4>"] = { require'dap'.step_out, "step out" },
       ["<f5>"] = { require'dap'.restart, "restart" },
-      ["<f6>"] = { require'dap'.close, "close" },
+      ["<f6>"] = { require'dap'.terminate, "terminate" },
+      ["<f7>"] = { require'dap'.disconnect, "disconnect" },
     })
   end
 }
