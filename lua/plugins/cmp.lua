@@ -17,6 +17,7 @@ return {
     local cmp = require("cmp")
     local lspkind = require("lspkind")
     lspkind.init {}
+
     cmp.setup({
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
