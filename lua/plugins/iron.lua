@@ -47,18 +47,8 @@ return {
     end
 
     require("which-key").register({
-      S = { 
-        function()
-          iron.send_line()
-        end, 
-        "send line" 
-      },
-      s = { 
-        function() 
-          return setup_send_operator()
-        end, 
-        "send operator" 
-      },
+      S = { iron.send_line, "send line" },
+      s = { setup_send_operator, "send operator" },
     }, { mode = "n", expr = true })
 
     require("which-key").register({
