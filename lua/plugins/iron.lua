@@ -46,9 +46,41 @@ return {
       return 'g@'
     end
 
+    local function send_tree_sitter_block()
+      local ts_utils = require('nvim-treesitter.ts_utils')
+      local current_node = ts_utils.get_node_at_cursor()
+
+      if not current_node then return end
+
+      -- Traverse up the tree to find the top-level node
+      while current_node:parent() and current_node:parent():type() ~= "source_file" do
+        current_node = current_node:parent()
+      end
+
+      if not current_node then
+        print("No suitable block found")
+        return
+      end
+
+      local start_row, start_col, end_row, end_col = current_node:range()
+      
+      -- Get the text of the node directly
+      local lines = vim.api.nvim_buf_get_lines(0, start_row, end_row + 1, false)
+      if #lines == 0 then return end
+      
+      -- Adjust the first and last line for the correct columns
+      lines[1] = string.sub(lines[1], start_col + 1)
+      lines[#lines] = string.sub(lines[#lines], 1, end_col)
+      
+      local block_text = table.concat(lines, '\n')
+      
+      -- Send the block text to the REPL
+      iron.send('julia', block_text)
+    end
+
     require("which-key").register({
-      S = { iron.send_line, "send line" },
-      s = { setup_send_operator, "send operator" },
+      S = { setup_send_operator, "send operator" },
+      s = { send_tree_sitter_block, "send tree sitter block" },
     }, { mode = "n", expr = true })
 
     require("which-key").register({
