@@ -46,6 +46,12 @@ return {
       return 'g@'
     end
 
+    local function send_to_repl(repl_type, text)
+      vim.defer_fn(function()
+        iron.send(repl_type, text)
+      end, 10)
+    end
+
     local function send_tree_sitter_block()
       local ts_utils = require('nvim-treesitter.ts_utils')
       local current_node = ts_utils.get_node_at_cursor()
@@ -75,7 +81,7 @@ return {
       local block_text = table.concat(lines, '\n')
       
       -- Send the block text to the REPL
-      iron.send('julia', block_text)
+      send_to_repl('julia', block_text)
     end
 
     require("which-key").register({
