@@ -5,7 +5,7 @@ return {
     iron.setup({
       config = {
         scratch_repl = true,
-        repl_open_cmd = "vnew",
+        repl_open_cmd = "bot 20split",
         repl_definition = {
           julia = {
             command = {
