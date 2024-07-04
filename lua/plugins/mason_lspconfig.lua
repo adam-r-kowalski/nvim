@@ -6,7 +6,7 @@ return {
   config = function()
     require("neodev").setup({})
     require("mason-lspconfig").setup({
-      ensure_installed = { "lua_ls", "rust_analyzer", "pyright", "tsserver", "html" }
+      ensure_installed = { "lua_ls", "rust_analyzer", "pyright", "tsserver", "html", "julials" }
     })
 
     local on_attach = function(_, bufnr)
@@ -28,15 +28,17 @@ return {
 
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+    local lspconfig = require("lspconfig")
+
     require("mason-lspconfig").setup_handlers({
       function (server_name)
-        require("lspconfig")[server_name].setup({
+        lspconfig[server_name].setup({
           on_attach = on_attach,
           capabilities = capabilities
         })
       end,
       ["lua_ls"] = function ()
-        require("lspconfig")["lua_ls"].setup({
+        lspconfig["lua_ls"].setup({
           on_attach = on_attach,
           capabilities = capabilities,
           settings = {
@@ -47,7 +49,22 @@ return {
             }
           }
         })
-      end
+      end,
+      lspconfig["julials"].setup({
+        cmd = {
+          "julia",
+          "--startup-file=no",
+          "--history-file=no",
+          "--project=" .. vim.fn.getcwd(),
+          "-e",
+          [[
+            using Pkg; Pkg.activate(".")
+            using LanguageServer, LanguageServer.SymbolServer
+            runserver()
+          ]]
+        },
+        filetypes = {"julia"},
+      })
     })
   end
 }

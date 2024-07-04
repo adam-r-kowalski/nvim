@@ -3,7 +3,7 @@ return {
   tag = '0.1.6',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    { 'natecraddock/telescope-zf-native.nvim' }
+    'natecraddock/telescope-zf-native.nvim'
   },
   keys = {
     { "<leader>f", "<cmd>Telescope find_files<cr>", desc="files" },

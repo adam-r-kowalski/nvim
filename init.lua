@@ -39,7 +39,6 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.autowrite = true
 vim.opt.shada = {}
-vim.opt.shell='nu'
 
 vim.keymap.set("n", ";", ":", { noremap = true })
 vim.keymap.set("n", "<c-h>", "<c-w>h", { noremap = true, silent = true })

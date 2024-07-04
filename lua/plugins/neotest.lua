@@ -2,6 +2,7 @@ return {
   "nvim-neotest/neotest",
   dependencies = {
     "nvim-neotest/neotest-python",
+    "rouge8/neotest-rust",
     "nvim-neotest/neotest",
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
@@ -12,7 +13,8 @@ return {
       adapters = {
         require("neotest-python")({
           runner = "pytest"
-        })
+        }),
+        require("neotest-rust")
       }
     }
 
